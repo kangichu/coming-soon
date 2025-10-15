@@ -11,10 +11,10 @@
 }
 :root {
   --bg: #bddbbd;
-  --width: 30;
-  --height: 44;
+  --width: 20;  /* Reduced from 25 */
+  --height: 30;  /* Reduced from 36 */
   --backboard: #d1c294;
-  --depth: 20;
+  --depth: 12;  /* Reduced from 16 */
   --rx: -20;
   --ry: 38;
   --thickness: 1;
@@ -32,6 +32,7 @@
   --rail-three: #fff;
   --handle: #e6e6e6;
   --open: 0;
+  --ready: 0;
 }
 body {
   font-weight: bold;
@@ -95,8 +96,7 @@ body {
   place-items: center;
 }
 .wardrobe {
-  -webkit-animation: spin 10s infinite linear;
-          animation: spin 10s infinite linear;
+  animation: spin 10s infinite linear;
   height: calc(var(--height) * 1vmin);
   width: calc(var(--width) * 1vmin);
   transform: translate3d(-50%, -50%, 50vmin) rotateX(calc(var(--rx) * 1deg)) rotateY(calc(var(--ry) * 1deg));
@@ -212,8 +212,8 @@ details {
   z-index: 2;
   transform: translate3d(0, 0, 0.5vmin);
 }
-details:hover:not([open]) ~.door {
-  --open: 0.05;
+details:hover:not([open]) ~ .door {
+  --open: calc(0.05 * var(--ready));
 }
 summary {
   height: 100%;
@@ -242,7 +242,10 @@ summary:after {
 }
 [open],
 [open] ~ .door {
-  --open: 1;
+  --open: var(--ready);
+}
+details:hover:not([open]) ~ .door:not([style*="--ready: 1"]) + .speech-bubble {
+  opacity: 1;
 }
 .door {
   height: 100%;
@@ -420,3 +423,56 @@ img {
     transform: translate(25%, 0);
   }
 }
+@keyframes makeReady {
+  to {
+    --ready: 1;
+  }
+}
+.speech-bubble {
+  position: absolute;
+  background: var(--unit-two); /* Match wardrobe color */
+  padding: 1em;
+  top: 25%; /* Position above the wardrobe */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.2vmin; /* Slightly larger for better visibility */
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 9999;
+  color: white; /* Better contrast on the wardrobe-colored background */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add shadow for depth */
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  border: 10px solid transparent;
+  border-top-color: var(--unit-two); /* Match bubble color */
+  transform: translateX(-50%);
+}
+.tandish {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 3vmin;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+[data-ready="true"] {
+  --ready: 1;
+}
+details:not([open]):hover ~ .door {
+  --open: calc(0.05 * var(--ready));
+}
+
+.wardrobe[data-ready="true"] ~ .speech-bubble {
+  opacity: 0;
+}
+
+.wardrobe:not([data-ready="true"]) details:hover ~ .speech-bubble {
+  opacity: 1;
+}
+
