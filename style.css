@@ -428,6 +428,7 @@ img {
     --ready: 1;
   }
 }
+
 .speech-bubble {
   position: absolute;
   background: var(--unit-two); /* Match wardrobe color */
