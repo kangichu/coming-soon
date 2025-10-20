@@ -432,9 +432,9 @@ img {
   position: absolute;
   background: var(--unit-two); /* Match wardrobe color */
   padding: 1em;
-  top: 25%; /* Position above the wardrobe */
+  top: 48%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, calc(-50% - calc(var(--height) * 0.5vmin) - 3em));
   font-size: 2.2vmin; /* Slightly larger for better visibility */
   opacity: 0;
   transition: opacity 0.3s;
@@ -442,6 +442,7 @@ img {
   z-index: 9999;
   color: white; /* Better contrast on the wardrobe-colored background */
   box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add shadow for depth */
+  white-space: nowrap;
 }
 
 .speech-bubble:after {

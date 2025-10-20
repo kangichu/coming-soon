@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const doorDetails = wardrobe.querySelectorAll('details');
     doorDetails.forEach(detail => {
         detail.addEventListener('click', (e) => {
-            // If wardrobe isn't ready yet, show speech bubble
+            // If wardrobe isn't ready yet, show SweetAlert popup
             if (!wardrobe.dataset.ready) {
                 e.preventDefault(); // Prevent door from opening
                 speechBubble.style.opacity = "1"; // Make speech bubble visible
