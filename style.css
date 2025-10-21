@@ -254,7 +254,7 @@ details:hover:not([open]) ~ .door:not([style*="--ready: 1"]) + .speech-bubble {
   pointer-events: none;
   top: 0;
   left: 0;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease-out;
   transform: rotateY(calc((var(--open) * (120 * var(--coefficient))) * 1deg));
   transform-origin: var(--origin);
 }

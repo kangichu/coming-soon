@@ -24,10 +24,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const doorDetails = wardrobe.querySelectorAll('details');
     doorDetails.forEach(detail => {
         detail.addEventListener('click', (e) => {
-            // If wardrobe isn't ready yet, show SweetAlert popup
+            // If wardrobe isn't ready yet, show door opening effect
             if (!wardrobe.dataset.ready) {
                 e.preventDefault(); // Prevent door from opening
-                speechBubble.style.opacity = "1"; // Make speech bubble visible
+                
+                // Add slight opening effect to doors
+                const leftDoor = wardrobe.querySelector('.wardrobe__door--left .door');
+                const rightDoor = wardrobe.querySelector('.wardrobe__door--right .door');
+                
+                // Apply temporary opening styles
+                leftDoor.style.transform = 'rotateY(-15deg)';
+                rightDoor.style.transform = 'rotateY(15deg)';
+                
+                // After a brief moment, close doors and show speech bubble
+                setTimeout(() => {
+                    leftDoor.style.transform = '';
+                    rightDoor.style.transform = '';
+                    speechBubble.style.opacity = "1";
+                    
+                    // Hide speech bubble after 3 seconds
+                    setTimeout(() => {
+                        speechBubble.style.opacity = "0";
+                    }, 3000);
+                }, 200); // Doors open for 200ms before closing
             }
         });
     });
