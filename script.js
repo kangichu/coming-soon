@@ -4,6 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const targetDate = new Date('2026-05-30'); // Target date when wardrobe becomes ready
     
+    // Array of upgrade messages
+    const upgradeMessages = [
+        "Hey, we aren't ready yet!",
+        "We're upgrading Tandish to serve both property owners and tenants better...",
+        "Building smarter tenant management tools...",
+        "Adding seamless rent tracking and payment insights...",
+        "Setting up dashboards for landlords to manage their listings and tenants...",
+        "Introducing automated invoices and expense summaries...",
+        "Polishing up new property analytics and reporting features...",
+        "Enhancing account security and data protection...",
+        "Preparing your personalized property management experience...",
+        "Almost there — Tandish is about to get a whole lot better!"
+    ];
+
+    
+    let currentMessageIndex = 0;
+    
     // Check if target date has been reached
     const checkDate = () => {
         const now = new Date();
@@ -40,7 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     leftDoor.style.transform = '';
                     rightDoor.style.transform = '';
+                    
+                    // Update message text with current message
+                    speechBubble.textContent = upgradeMessages[currentMessageIndex];
                     speechBubble.style.opacity = "1";
+                    
+                    // Cycle to next message for next click
+                    currentMessageIndex = (currentMessageIndex + 1) % upgradeMessages.length;
                     
                     // Hide speech bubble after 3 seconds
                     setTimeout(() => {
