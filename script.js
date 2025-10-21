@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     let currentMessageIndex = 0;
+    let hideTimeout = null; // Store timeout reference
     
     // Check if target date has been reached
     const checkDate = () => {
@@ -45,6 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!wardrobe.dataset.ready) {
                 e.preventDefault(); // Prevent door from opening
                 
+                // Clear any existing timeout
+                if (hideTimeout) {
+                    clearTimeout(hideTimeout);
+                    hideTimeout = null;
+                }
+                
+                // If speech bubble is currently visible, hide it and return
+                if (speechBubble.style.opacity === "1") {
+                    speechBubble.style.opacity = "0";
+                    return;
+                }
+                
                 // Add slight opening effect to doors
                 const leftDoor = wardrobe.querySelector('.wardrobe__door--left .door');
                 const rightDoor = wardrobe.querySelector('.wardrobe__door--right .door');
@@ -65,10 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Cycle to next message for next click
                     currentMessageIndex = (currentMessageIndex + 1) % upgradeMessages.length;
                     
-                    // Hide speech bubble after 3 seconds
-                    setTimeout(() => {
+                    // Set timeout to hide speech bubble after 5 seconds
+                    hideTimeout = setTimeout(() => {
                         speechBubble.style.opacity = "0";
-                    }, 3000);
+                        hideTimeout = null;
+                    }, 5000);
                 }, 200); // Doors open for 200ms before closing
             }
         });
