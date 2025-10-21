@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // If speech bubble is currently visible, hide it and return
                 if (speechBubble.style.opacity === "1") {
                     speechBubble.style.opacity = "0";
-                    return;
+                    // return;
                 }
                 
                 // Add slight opening effect to doors
