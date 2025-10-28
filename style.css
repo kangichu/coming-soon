@@ -478,3 +478,43 @@ details:not([open]):hover ~ .door {
   opacity: 1;
 }
 
+details {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  transform: translate3d(0, 0, 0.5vmin);
+}
+
+/* Alternating door animation */
+@keyframes doorPulseLeft {
+  0%, 25%, 100% {
+    transform: rotateY(0deg);
+  }
+  12.5% {
+    transform: rotateY(-10deg);
+  }
+}
+
+@keyframes doorPulseRight {
+  0%, 50%, 75%, 100% {
+    transform: rotateY(0deg);
+  }
+  62.5% {
+    transform: rotateY(10deg);
+  }
+}
+
+.wardrobe:not([data-ready="true"]) .door--left {
+  animation: doorPulseLeft 4s ease-in-out infinite;
+}
+
+.wardrobe:not([data-ready="true"]) .door--right {
+  animation: doorPulseRight 4s ease-in-out infinite;
+}
+
+/* Pause animation when door has inline styles (from click interaction) */
+.door[style*="transform"],
+.door.animation-paused {
+  animation: none !important;
+}

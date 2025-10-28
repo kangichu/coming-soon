@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Polishing up new property analytics and reporting features...",
         "Enhancing account security and data protection...",
         "Preparing your personalized property management experience...",
-        "Almost there — Tandish is about to get a whole lot better!"
+        "Almost there – Tandish is about to get a whole lot better!"
     ];
 
     
@@ -71,12 +71,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     leftDoor.style.transform = '';
                     rightDoor.style.transform = '';
                     
+                    // Temporarily disable animation by adding a class
+                    leftDoor.classList.add('animation-paused');
+                    rightDoor.classList.add('animation-paused');
+                    
                     // Update message text with current message
                     speechBubble.textContent = upgradeMessages[currentMessageIndex];
                     speechBubble.style.opacity = "1";
                     
                     // Cycle to next message for next click
                     currentMessageIndex = (currentMessageIndex + 1) % upgradeMessages.length;
+                    
+                    // Re-enable animation after 8 seconds
+                    setTimeout(() => {
+                        leftDoor.classList.remove('animation-paused');
+                        rightDoor.classList.remove('animation-paused');
+                    }, 8000);
                     
                     // Set timeout to hide speech bubble after 5 seconds
                     hideTimeout = setTimeout(() => {
