@@ -7,15 +7,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array of upgrade messages
     const upgradeMessages = [
         "Hey, we aren't ready yet!",
-        "We're upgrading Tandish to serve as a property and tenant management platform...",
+        "Evolving to manage properties & tenants seamlessly...",
         "Building smarter tenant management tools...",
         "Adding seamless rent tracking and payment insights...",
-        "Setting up dashboards for landlords to manage their listings and tenants...",
         "Introducing automated invoices and expense summaries...",
         "Polishing up new property analytics and reporting features...",
         "Enhancing account security and data protection...",
         "Preparing your personalized property management experience...",
-        "Almost there – Tandish is about to get a whole lot better!"
+        "Almost there – Tandish is about to get a whole lot better!",
+        "Installing smart rental dashboards…",
+        "Painting your new landlord control room…",
+        "Sweeping away old rental hustle…",
+        "Unlocking automated rent tracking…",
+        "Drilling in secure tenant files…",
+        "Your property universe is almost ready…",
     ];
 
     

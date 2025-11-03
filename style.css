@@ -518,3 +518,12 @@ details {
 .door.animation-paused {
   animation: none !important;
 }
+
+.speech-bubble {
+  animation: bubbleIn 0.4s ease-out;
+}
+
+@keyframes bubbleIn {
+  0% { transform: translate(-50%, -40%); opacity: 0; }
+  100% { transform: translate(-50%, calc(-50% - calc(var(--height) * 0.5vmin) - 3em)); opacity: 1; }
+}
