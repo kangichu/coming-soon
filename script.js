@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array of upgrade messages
     const upgradeMessages = [
         "Hey, we aren't ready yet!",
-        "We're upgrading Tandish to serve both property owners and tenants better...",
+        "We're upgrading Tandish to serve as a property and tenant management platform...",
         "Building smarter tenant management tools...",
         "Adding seamless rent tracking and payment insights...",
         "Setting up dashboards for landlords to manage their listings and tenants...",
